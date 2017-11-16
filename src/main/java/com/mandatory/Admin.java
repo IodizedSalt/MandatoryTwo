@@ -3,16 +3,16 @@ package com.mandatory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Admin {
 
-    @Autowired
-    AdminRepository ar;
 
     private String name;
     private String email;
     private String password;
+    @Id
     private int id;
 
     public String getName() {
