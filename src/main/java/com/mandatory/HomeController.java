@@ -13,4 +13,13 @@ public class HomeController {
     public String studentPage(){
         return "student";
     }
+    @GetMapping("/teacher")
+    public String teacherPage(){
+        return "teacher";
+    }
+    @GetMapping("/admin")
+    public String adminPage (){
+        return "admin";
+    }
+
 }
