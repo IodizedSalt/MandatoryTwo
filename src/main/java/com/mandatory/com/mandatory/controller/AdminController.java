@@ -1,4 +1,4 @@
-package com.mandatory;
+package com.mandatory.com.mandatory.controller;
 
 import org.springframework.stereotype.Controller;
 

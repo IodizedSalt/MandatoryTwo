@@ -1,5 +1,6 @@
-package com.mandatory;
+package com.mandatory.com.mandatory.repository;
 
+import com.mandatory.Admin;
 import org.springframework.data.repository.CrudRepository;
 
 /**
