@@ -23,28 +23,24 @@ public class CourseService {
     }
 
 
+    public Course getCourse(Integer id){
+        return courseRepository.findOne(id);
+    }
 
 
+    //DOESN'T WORK
+    public void addCourse(Course course) {
+        courseRepository.save(course);
 
+    }
 
+    public void deleteCourse(Integer id) {
+        courseRepository.delete(id);
+    }
 
-
-
-//    public Course getCourse(String id){
-//        return courseRepository.findOne(id);
-//    }
-//
-//    public void addCourse(Course course) {
-//        courseRepository.save(course);
-//
-//    }
-//
 //    public void updateCours(Course course) {
 //        courseRepository.save(course);
 //    }
-//
-//    public void deleteCourse(String id) {
-//        courseRepository.delete(id);
-//    }
+
 
 }

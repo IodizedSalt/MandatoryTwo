@@ -1,6 +1,9 @@
 package com.mandatory.Course;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gabriele on 22/11/2017.
@@ -8,9 +11,12 @@ import javax.persistence.*;
     @Entity
     public class Course {
 
+    private static List<Course> courseList = new ArrayList<>();
+
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private Integer id;
+    private int id;
     private String namee;
     private String named;
 
@@ -18,35 +24,50 @@ import javax.persistence.*;
 
     }
 
-    public Course(Integer id, String namee, String named) {
+    public Course(int id, String namee, String named) {
         this.id = id;
-        namee = namee;
-        named = named;
+        this.namee = namee;
+        this.named = named;
 
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getnamee() {
+    public String getNamee() {
         return namee;
     }
 
-    public void setnamee(String namee) {
-        namee = namee;
+    public void setNamee(String namee) {
+        this.namee = namee;
     }
 
-    public String getnamed(){
+    public String getNamed() {
         return named;
     }
 
-    public void setNameD(String named) {
-        named = named;
+    public void setNamed(String named) {
+        this.named = named;
+    }
+
+    public static List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> list){list = list;}
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", namee='" + namee + '\'' +
+                ", named='" + named + '\'' +
+                '}';
     }
 
 }
