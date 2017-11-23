@@ -1,4 +1,4 @@
-package com.mandatory;
+package com.mandatory.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,9 @@ public class HomeController {
     public String teacherPage(){
         return "teacher";
     }
-    @GetMapping("/admin")
-    public String adminPage (){
-        return "admin";
-    }
+    //    @GetMapping("/admin")
+    //    public String adminPage (){
+    //        return "admin";
+    //    }
 
 }

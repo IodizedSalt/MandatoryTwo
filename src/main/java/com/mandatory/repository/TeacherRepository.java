@@ -1,4 +1,4 @@
-package com.mandatory.com.mandatory.repository;
+package com.mandatory.repository;
 
 /**
  * Created by Chris on 17-11-17.

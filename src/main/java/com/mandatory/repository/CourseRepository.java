@@ -1,5 +1,6 @@
-package com.mandatory.Course;
+package com.mandatory.repository;
 
+import com.mandatory.entity.Course;
 import org.springframework.data.repository.CrudRepository;
 
 /**
