@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Course</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-            ></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 </head>
 <body>
 
-<!--<nav class="navbar navbar-inverse	navbar-fixed-top">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--<a class="navbar-brand" href="/">KEA</a>-->
-        <!--</div>-->
+<nav class="navbar navbar-inverse	navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KEA</a>
+        </div>
 
 
-        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li><a href="/student">Student></a></li>-->
-                <!--<li><a href="/teacher">Teacher</a></li>-->
-                <!--<li><a href="/admin">Admin</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/student">Student</a></li>
+                <li><a href="/teacher">Teacher</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="jumbotron">
     <h1 class="display-3">Course List</h1>
@@ -69,78 +71,9 @@
 
     </p>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js" ></script>
 </body>
 </html>
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8"/>-->
-    <!--<title>Course</title>-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"-->
-    <!--&gt;</script>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-    <!--<a class="navbar-brand" href="#" th:href="@{/}">MyCRUD APP</a>-->
-    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
-            <!--aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-        <!--<span class="navbar-toggler-icon"></span>-->
-    <!--</button>-->
-
-    <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-        <!--<ul class="navbar-nav mr-auto">-->
-            <!--<li class="nav-item active">-->
-                <!--<a class="nav-link" href="#" th:href="@{/}">Create <span class="sr-only">(current)</span></a>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-                <!--<a class="nav-link" href="#" th:href="@{/course/show}">Show</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-
-    <!--</div>-->
-<!--</nav>-->
-
-
-<!--<div class="jumbotron">-->
-    <!--<h1 class="display-3">Users List</h1>-->
-    <!--<p class="lead">-->
-    <!--<div class="alert alert-dark" role="alert" th:text="${course}">-->
-        <!--This is a dark alert—check it out!-->
-    <!--</div>-->
-    <!--</p>-->
-    <!--<hr class="my-4"/>-->
-
-    <!--<p class="lead">-->
-
-    <!--<table class="table table-bordered table-striped">-->
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<td>ID</td>-->
-            <!--<td>Name</td>-->
-            <!--<td>Email</td>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr th:if="${coursList.empty}">-->
-            <!--<td colspan="3">No Users</td>-->
-        <!--</tr>-->
-        <!--<tr th:each="course : ${courseList}">-->
-            <!--<td th:text="${course.id}">1</td>-->
-            <!--<td th:text="${course.namee}">Name ...</td>-->
-            <!--<td th:text="${course.named}">Email ...</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-
-    <!--<a href="/">-->
-        <!--<button type="button" class="btn btn-dark">Go Back</button>-->
-    <!--</a>-->
-
-    <!--</p>-->
-<!--</div>-->
-
-
-<!--</body>-->
-<!--</html>-->
