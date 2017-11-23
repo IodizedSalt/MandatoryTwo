@@ -61,6 +61,24 @@ import java.util.List;
 
     public void setCourseList(List<Course> list){list = list;}
 
+
+
+    public static Course getCourseById(long id){
+        List<Course> list = Course.getCourseList();
+
+        Course theOne = new Course(-1, "Dummy", "dummy");
+
+        for (int i = 0; i < list.size(); i++) {
+            Course u = list.get(i);
+            if (u.getId() == id) {
+                System.out.println(u);
+                theOne = u;
+                break;
+            }
+        }
+        return theOne;
+    }
+
     @Override
     public String toString() {
         return "Course{" +

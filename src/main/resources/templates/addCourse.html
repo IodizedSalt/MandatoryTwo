@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>addCourse</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<div class="jumbotron">
+    <h1 class="display-3">Create a NEW Course!!</h1>
+    <hr class="my-4"/>
+    <p>Fill the info for the new course.</p>
+    <p class="lead">
+    <form action="#" th:action="@{/course/add}" th:object="${course}" method="post">
+        <input class="form-control" type="text" id="namee" name="namee" placeholder="namee" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="named" name="named" placeholder="named" value="" required="true"/> <br/>
+
+
+    <button type="submit" class="btn btn-dark">Save Course</button>
+    </form>
+    </p>
+</div>
+</body>
+</html>
