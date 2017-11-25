@@ -19,20 +19,6 @@ public class CourseController {
     @Autowired
     private CourseRepository cr;
 
-    @RequestMapping("/courses")
-    public List<Course> getAllCourses()
-    {
-        List<Course> courses = new ArrayList<>();
-        cr.findAll().forEach(courses::add);
-        return courses;
-    }
-
-
-    @GetMapping("/courses/{id}")
-    public Course getCourse(@PathVariable Integer id){
-        return cr.findOne(id);
-    }
-
 
     @RequestMapping(method = RequestMethod.POST, value ="/courses",consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addCourse(@RequestBody Course course){
@@ -49,14 +35,19 @@ public class CourseController {
     }
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value ="courses/{id}")
-    public void deleteCourse(@PathVariable Integer id){
-        cr.delete(id);
+    @PostMapping(value = "/")
+    public ModelAndView delete(
+            @RequestParam(name = "id", defaultValue = "-1") int id){
+        if (id > 0) {
+            cr.delete(id);
+        }
+        ModelAndView mv = new ModelAndView("homepage");
+        return  mv;
     }
 
 
     @GetMapping(value = "/course/add")
-    public ModelAndView name(){
+    public ModelAndView Getadd(){
         ModelAndView mv = new ModelAndView("addCourse");
         mv.getModel().put("courseList", cr.findAll());
         mv.getModel().put("course", "");
@@ -65,7 +56,7 @@ public class CourseController {
 
 
     @PostMapping("/course/add")
-    public ModelAndView saveAndAdd(
+    public ModelAndView PostAdd(
             @RequestParam(name = "id", defaultValue = "-1")
                     int id,
             @RequestParam(name = "namee", defaultValue = "NO_NAMEE")
@@ -92,12 +83,36 @@ public class CourseController {
     }
 
 
-//
-//    @RequestMapping(method = RequestMethod.PUT, value ="courses/{id}")
-//    public void updateCourse(@RequestBody Course course, @PathVariable String id){
-//        courseService.updateCourse(course);
-//    }
 
 
+
+    // GET ALL
+    //    @RequestMapping("/courses")
+    //    public List<Course> getAllCourses()
+    //    {
+    //        List<Course> courses = new ArrayList<>();
+    //        cr.findAll().forEach(courses::add);
+    //        return courses;
+    //    }
+    // GET ONE
+    //    @GetMapping("/courses/{id}")
+    //    public Course getCourse(@PathVariable Integer id){
+    //        return cr.findOne(id);
+    //    }
+    //ADD
+    //    @RequestMapping(method = RequestMethod.POST, value ="/courses",consumes = MediaType.APPLICATION_JSON_VALUE)
+    //    public void addCourse(@RequestBody Course course){
+    //        cr.save(course);
+    //    }
+    //DELETE
+    //    @RequestMapping(method = RequestMethod.DELETE, value ="courses/{id}")
+    //    public void deleteCourse(@PathVariable Integer id){
+    //        cr.delete(id);
+    //    }
+    //UPDATE
+    //    @RequestMapping(method = RequestMethod.PUT, value ="courses/{id}")
+    //    public void updateCourse(@RequestBody Course course, @PathVariable String id){
+    //        courseService.updateCourse(course);
+    //    }
 
 }
