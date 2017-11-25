@@ -36,24 +36,57 @@
 
 <div class="jumbotron">
     <h1 class="display-3">Course List</h1>
-    <hr class="my-4"/>
     <p class="lead">
+    <div class="alert alert-dark" role="alert" th:text="${course}">
+        This is a dark alert—check it out!
+    </div>
+    </p>
+    <hr class="my-4"/>
+
+    <p class="lead">
+
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
             <td>ID</td>
-            <td>Namee</td>
-            <td>Named</td>
+            <td>Name(English)</td>
+            <td>Name(Danish)</td>
+            <td>Study Programme</td>
+            <td>Mandatory/Elective</td>
+            <td>ECTS</td>
+            <td>Course Language</td>
+            <td>Minimum # of Students</td>
+            <td>Expected # of Students</td>
+            <td>Maximum # of Students</td>
+            <td>Prerequisites</td>
+            <td>Learning Outcome</td>
+            <td>Content</td>
+            <td>Learning Activity</td>
+            <td>Exam Form</td>
+            <td>Teachers</td>
         </tr>
         </thead>
         <tbody>
         <tr th:if="${courseList.empty}">
             <td colspan="3">No Courses</td>
         </tr>
-        <tr th:each="course : ${courseList}">
-            <td th:text="${course.id}">1</td>
-            <td th:text="${course.namee}">Name ...</td>
-            <td th:text="${course.named}">Email ...</td>
+        <tr th:each="course : ${courseList}" >
+            <td th:text="${course.id}"><input type="checkbox" name="namee"/> 1</td>
+            <td th:text="${course.namee}">Name(English)</td>
+            <td th:text="${course.named}">Name(Danish)</td>
+            <td th:text="${course.studyProgramme}">Study Programme</td>
+            <td th:text="${course.mandElect}">Mandatory/Elective</td>
+            <td th:text="${course.ECTS}">ECTS</td>
+            <td th:text="${course.courseLanguage}">Course Language</td>
+            <td th:text="${course.minStud}">Minimum # of Students</td>
+            <td th:text="${course.expStud}">Expected # of Students</td>
+            <td th:text="${course.maxStud}">Maximum # of Students</td>
+            <td th:text="${course.prerequisite}">Prerequisites</td>
+            <td th:text="${course.learningOutcome}">Learning Outcome</td>
+            <td th:text="${course.content}">Content</td>
+            <td th:text="${course.learningActivity}">Learning Activity</td>
+            <td th:text="${course.examForm}">Exam Form</td>
+            <td th:text="${course.teachers}">Teachers</td>
         </tr>
         </tbody>
     </table>

@@ -62,7 +62,33 @@ public class CourseController {
             @RequestParam(name = "namee", defaultValue = "NO_NAMEE")
                     String namee,
             @RequestParam(name = "named", defaultValue = "NO_NAMED")
-                    String named){
+                    String named,
+            @RequestParam(name = "studyProgramme", defaultValue = "NO_STUDYPROGRAMME")
+                    String studyProgramme,
+            @RequestParam(name = "mandElect", defaultValue = "NO_STUDYPROGRAMME")
+                    String mandElect,
+            @RequestParam(name = "ECTS", defaultValue = "NO_ECTS")
+                    int ECTS,
+            @RequestParam(name = "courseLanguage", defaultValue = "NO_COURSELANGUAGE")
+                    String courseLanguage,
+            @RequestParam(name = "minStud", defaultValue = "NO_MINSTUDENTS")
+                    int minStud,
+            @RequestParam(name = "expStud", defaultValue = "NO_EXPSTUDENTS")
+                    int expStud,
+            @RequestParam(name = "maxStud", defaultValue = "NO_MAXSTUDENTS")
+                    int maxStud,
+            @RequestParam(name = "prerequisite", defaultValue = "NO_PREREQUISITE")
+                    String prerequisite,
+            @RequestParam(name = "learningOutcome", defaultValue = "NO_LEARNINGOUTCOME")
+                    String learningOutcome,
+            @RequestParam(name = "content", defaultValue = "NO_CONTENT")
+                    String content,
+            @RequestParam(name = "learningActivity", defaultValue = "NO_LEARNINGACTIVITY")
+                    String learningActivity,
+            @RequestParam(name = "examForm", defaultValue = "NO_EXAMFORM")
+                    String examForm,
+            @RequestParam(name = "teachers", defaultValue = "NO_TEACHERS")
+                    String teachers){
 
         Course c;
         System.out.println("in saveandget and id="+id);
@@ -70,9 +96,23 @@ public class CourseController {
             System.out.println("inside if and id="+id);
             Course.getCourseById(id).setNamee(namee);
             Course.getCourseById(id).setNamed(named);
+            Course.getCourseById(id).setStudyProgramme(studyProgramme);
+            Course.getCourseById(id).setMandElect(mandElect);
+            Course.getCourseById(id).setECTS(ECTS);
+            Course.getCourseById(id).setCourseLanguage(courseLanguage);
+            Course.getCourseById(id).setMinStud(minStud);
+            Course.getCourseById(id).setExpStud(expStud);
+            Course.getCourseById(id).setMaxStud(maxStud);
+            Course.getCourseById(id).setPrerequisite(prerequisite);
+            Course.getCourseById(id).setLearningOutcome(learningOutcome);
+            Course.getCourseById(id).setContent(content);
+            Course.getCourseById(id).setLearningActivity(learningActivity);
+            Course.getCourseById(id).setExamForm(examForm);
+            Course.getCourseById(id).setTeachers(teachers);
+
             c = Course.getCourseById(id);
         } else {
-            c = new Course((int)counter.incrementAndGet(), namee, named);
+            c = new Course((int)counter.incrementAndGet(), namee, named, studyProgramme, mandElect, ECTS, courseLanguage, minStud, expStud, maxStud, prerequisite, learningOutcome, content, learningActivity, examForm, teachers);
             Course.getCourseList().add(c);
         }
         cr.save(c);
@@ -114,5 +154,7 @@ public class CourseController {
     //    public void updateCourse(@RequestBody Course course, @PathVariable String id){
     //        courseService.updateCourse(course);
     //    }
+
+
 
 }

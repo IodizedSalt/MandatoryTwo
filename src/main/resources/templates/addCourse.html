@@ -43,8 +43,21 @@
     <p>Fill the info for the new course.</p>
     <p class="lead">
     <form action="#" th:action="@{/course/add}" th:object="${course}" method="post">
-        <input class="form-control" type="text" id="namee" name="namee" placeholder="namee" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="named" name="named" placeholder="named" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="namee" name="namee" placeholder="Name(English)" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="named" name="named" placeholder="Name(Danish)" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="studyProgramme" name="studyProgramme" placeholder="Study Programme" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="mandElect" name="mandElect" placeholder="Mandatory/Elective" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="ECTS" name="ECTS" placeholder="ECTS" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="courseLanguage" name="courseLanguage" placeholder="Language of Course" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="minStud" name="minStud" placeholder="Minimum # Students" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="expStud" name="expStud" placeholder="Expected # Students" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="maxStud" name="maxStud" placeholder="Maximum # Students" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="prerequisite" name="prerequisite" placeholder="Prerequisites" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="learningOutcome" name="learningOutcome" placeholder="Learning Outcome" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="content" name="content" placeholder="Content" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="learningActivity" name="learningActivity" placeholder="Learning Activity" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="examForm" name="examForm" placeholder="Exam Form" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="teachers" name="teachers" placeholder="Teachers" value="" required="true"/> <br/>
     <button type="submit">Save Course</button>
     </form>
     </p>
