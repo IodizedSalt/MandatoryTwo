@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * Created by gabriele on 22/11/2017.
  */
-    @Entity
-    public class Course {
+@Entity
+public class Course {
 
     private static List<Course> courseList = new ArrayList<>();
 
