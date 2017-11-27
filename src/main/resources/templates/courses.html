@@ -36,15 +36,9 @@
 
 <div class="jumbotron">
     <h1 class="display-3">Course List</h1>
-    <p class="lead">
-    <div class="alert alert-dark" role="alert" th:text="${course}">
-        This is a dark alert—check it out!
-    </div>
-    </p>
     <hr class="my-4"/>
 
     <p class="lead">
-
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -71,7 +65,7 @@
             <td colspan="3">No Courses</td>
         </tr>
         <tr th:each="course : ${courseList}" >
-            <td th:text="${course.id}"><input type="checkbox" name="namee"/> 1</td>
+            <td th:text="${course.id}"> ID </td>
             <td th:text="${course.namee}">Name(English)</td>
             <td th:text="${course.named}">Name(Danish)</td>
             <td th:text="${course.studyProgramme}">Study Programme</td>
@@ -98,10 +92,18 @@
     <br/>
     <p>Type the Id of the Course to be deleted</p>
     <p class="lead">
-    <form action="#" th:action="@{/}" th:object="${course}" method="post">
-        <input class="form-control" type="text" id="id" name="id" placeholder="ID" value="" required="true"/> <br/>
-        <button type="submit">Delete</button>
+
+    <form id="delete" th:action="@{/course/show/delete}" method="get">
+    <input  class="form-control" type="text" id="idd" name="ID" placeholder="ID" value="" required="TRUE"/> <br/>
+    <button form="delete"  type="submit">Delete</button>
+        </form>
+    <br/>
+    <p>Type the Id of the Course to be deleted or edited</p>
+    <form id="update" th:action="@{/course/show/edit}" method="get">
+        <input  class="form-control" type="text" id="id" name="ID" placeholder="ID" value="" required="TRUE"/> <br/>
+        <button form="update"  type="submit">EDIT</button>
     </form>
+
     </p>
     </p>
 </div>

@@ -20,24 +20,17 @@ public class CourseController {
     private CourseRepository cr;
 
 
-    @RequestMapping(method = RequestMethod.POST, value ="/courses",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addCourse(@RequestBody Course course){
-        cr.save(course);
-    }
-
-
+    //courses.html
     @GetMapping("/course/show")
     public ModelAndView show(){
-        ModelAndView mv = new ModelAndView("course");
+        ModelAndView mv = new ModelAndView("courses");
         mv.getModel().put("courseList", cr.findAll());
-        mv.getModel().put("course", "Here are the courses");
         return mv;
     }
 
-
-    @PostMapping(value = "/")
+    @GetMapping(value = "/course/show/delete")
     public ModelAndView delete(
-            @RequestParam(name = "id", defaultValue = "-1") int id){
+            @RequestParam(name = "ID", defaultValue = "-1") int id){
         if (id > 0) {
             cr.delete(id);
         }
@@ -45,19 +38,15 @@ public class CourseController {
         return  mv;
     }
 
-
     @GetMapping(value = "/course/add")
     public ModelAndView Getadd(){
         ModelAndView mv = new ModelAndView("addCourse");
-        mv.getModel().put("courseList", cr.findAll());
-        mv.getModel().put("course", "");
         return mv;
     }
 
-
     @PostMapping("/course/add")
     public ModelAndView PostAdd(
-            @RequestParam(name = "id", defaultValue = "-1")
+            @RequestParam(name = "ID", defaultValue = "-1")
                     int id,
             @RequestParam(name = "namee", defaultValue = "NO_NAMEE")
                     String namee,
@@ -116,9 +105,80 @@ public class CourseController {
             Course.getCourseList().add(c);
         }
         cr.save(c);
-        ModelAndView mv = new ModelAndView("addCourse");
+        ModelAndView mv = new ModelAndView("homepage");
         mv.getModel().put("courseList", cr.findAll());
         mv.getModel().put("course", c);
+        return mv;
+    }
+
+
+    @GetMapping(value = "/course/show/edit")
+    public ModelAndView getEdit(@RequestParam(name = "ID", defaultValue = "-1") int id){
+        ModelAndView mv = new ModelAndView("editCourse");
+        mv.getModel().put("courseList", cr.findAll());
+        mv.getModel().put("course", "");
+        mv.getModel().put("ID",id);
+        return mv;
+    }
+
+    @PostMapping(value = "/course/show/edit")
+    public ModelAndView edit(
+            @RequestParam(name = "ID", defaultValue = "-1")
+                    int id,
+            @RequestParam(name = "namee", defaultValue = "NO_NAMEE")
+                    String namee,
+            @RequestParam(name = "named", defaultValue = "NO_NAMED")
+                    String named,
+            @RequestParam(name = "studyProgramme", defaultValue = "NO_STUDYPROGRAMME")
+                    String studyProgramme,
+            @RequestParam(name = "mandElect", defaultValue = "NO_STUDYPROGRAMME")
+                    String mandElect,
+            @RequestParam(name = "ECTS", defaultValue = "-1")
+                    int ECTS,
+            @RequestParam(name = "courseLanguage", defaultValue = "NO_COURSELANGUAGE")
+                    String courseLanguage,
+            @RequestParam(name = "minStud", defaultValue = "-1")
+                    int minStud,
+            @RequestParam(name = "expStud", defaultValue = "-1")
+                    int expStud,
+            @RequestParam(name = "maxStud", defaultValue = "-1")
+                    int maxStud,
+            @RequestParam(name = "prerequisite", defaultValue = "NO_PREREQUISITE")
+                    String prerequisite,
+            @RequestParam(name = "learningOutcome", defaultValue = "NO_LEARNINGOUTCOME")
+                    String learningOutcome,
+            @RequestParam(name = "content", defaultValue = "NO_CONTENT")
+                    String content,
+            @RequestParam(name = "learningActivity", defaultValue = "NO_LEARNINGACTIVITY")
+                    String learningActivity,
+            @RequestParam(name = "examForm", defaultValue = "NO_EXAMFORM")
+                    String examForm,
+            @RequestParam(name = "teachers", defaultValue = "NO_TEACHERS")
+                    String teachers){
+
+            Course c;
+            c = Course.getCourseById(id);
+            c.setId(id);
+            c.setNamee(namee);
+            c.setNamed(named);
+            c.setStudyProgramme(studyProgramme);
+            c.setMandElect(mandElect);
+            c.setECTS(ECTS);
+            c.setCourseLanguage(courseLanguage);
+            c.setMinStud(minStud);
+            c.setExpStud(expStud);
+            c.setMaxStud(maxStud);
+            c.setPrerequisite(prerequisite);
+            c.setLearningOutcome(learningOutcome);
+            c.setContent(content);
+            c.setLearningActivity(learningActivity);
+            c.setExamForm(examForm);
+            c.setTeachers(teachers);
+            cr.save(c);
+
+        ModelAndView mv = new ModelAndView("homepage");
+//        mv.getModel().put("courseList", cr.findAll());
+//        mv.getModel().put("course", c);
         return mv;
     }
 
