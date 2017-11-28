@@ -9,10 +9,10 @@ public class HomeController {
     public String homePage(){
         return "homepage";
     }
-    @GetMapping("/student")
-    public String studentPage(){
-        return "student";
-    }
+//    @GetMapping("/student")
+//    public String studentPage(){
+//        return "student";
+//    }
     @GetMapping("/teacher")
     public String teacherPage(){
         return "teacher";

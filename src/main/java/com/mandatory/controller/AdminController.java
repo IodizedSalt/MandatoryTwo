@@ -1,16 +1,14 @@
 package com.mandatory.controller;
 
-import com.mandatory.entity.Admin;
 import com.mandatory.entity.Course;
 import com.mandatory.repository.AdminRepository;
 import com.mandatory.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class AdminController {
@@ -23,20 +21,21 @@ public class AdminController {
 
 
     @GetMapping(value = "/admin")
-    public ModelAndView logIn(){
+    public ModelAndView logInAdmin(){
         ModelAndView mv = new ModelAndView("admin");
         return mv;
+
     }
 
     @PostMapping(value = "/admin")
-    private ModelAndView logIn(@RequestParam(name = "email") String email,
-                               @RequestParam(name = "password") String password)
+    private ModelAndView logInAdmin(@RequestParam(name = "adminemail") String adminEmail,
+                               @RequestParam(name = "adminpassword") String adminPassword)
     {
         try {
-            String pass = ar.findOne(email).getPassword();
+            String pass = ar.findOne(adminEmail).getPassword();
 
 
-            if (pass.equals(password)) {
+            if (pass.equals(adminPassword)) {
                 System.out.println("ACCESS GRANTED");
                 ModelAndView mv = new ModelAndView("course");
                 mv.getModel().put("courseList", cr.findAll());
@@ -54,5 +53,16 @@ public class AdminController {
         }
 
     }
+//    @GetMapping(value = "/courseedit")
+//    public ModelAndView editUser(
+//            @RequestParam(name = "id", defaultValue = "0")
+//                    long id) {
+//        System.out.println("id = " + id);
+//        ModelAndView mv = new ModelAndView("edit");
+//
+//        mv.getModel().put("course", Course.getCourseById(id));
+//
+//        return mv;
+//    }
 
 }

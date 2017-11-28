@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Student Login</title>
@@ -38,23 +38,32 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <h3>Log in with Student credential : </h3>
+    <br/>
+    <br/>
+    <p class="lead">
+        <form action="#" th:action="@{/student}" th:object="${student}" method="post">
     <p>
+
     <div class="input-group" >
-        <span class="input-group-addon" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"/>
+        <span class="input-group-addon" id="basic-addon3">@</span>
+        <input type="text" class="form-control" id="studentemail" name="studentemail" placeholder="email" required="true" aria-describedby="basic-addon1"/>
     </div>
+
     </p>
+
     <p>
     <div class="input-group">
-        <span class="input-group-addon" id="basic-addon2">»»</span>
-        <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1"/>
+        <span class="input-group-addon" id="basic-addon4">»»</span>
+        <input type="password" class="form-control" id="studentpassword" name="studentpassword" placeholder="password" required="true" aria-describedby="basic-addon1"/>
     </div>
     </p>
+
     <p>
     <div class="btn-toolbar" role="toolbar" aria-label="...">
-        <div class="btn-group" role="group" aria-label="Log In"><a href="/student/Home"> <button type="button" class="btn btn-default">Log In</button></a></div>
+        <div class="btn-group" role="group" aria-label="Log In"><button type="submit" class="btn btn-default">Log In</button></div>
     </div>
+    </p>
+        </form>
     </p>
 
 </div>

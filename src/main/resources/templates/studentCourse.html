@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Course</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse	navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">KEA</a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/student">Student</a></li>
+                <li><a href="/teacher">Teacher</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="display-3">Course List</h1>
+    <p class="lead">
+    <div class="alert alert-dark" role="alert" th:text="${course}">
+        This is a dark alert—check it out!
+    </div>
+    </p>
+    <hr class="my-4"/>
+
+    <p class="lead">
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name(English)</td>
+            <td>Name(Danish)</td>
+            <td>Study Programme</td>
+            <td>Mandatory/Elective</td>
+            <td>ECTS</td>
+            <td>Course Language</td>
+            <td>Minimum # of Students</td>
+            <td>Expected # of Students</td>
+            <td>Maximum # of Students</td>
+            <td>Prerequisites</td>
+            <td>Learning Outcome</td>
+            <td>Content</td>
+            <td>Learning Activity</td>
+            <td>Exam Form</td>
+            <td>Teachers</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:if="${courseList.empty}">
+            <td colspan="3">No Courses</td>
+        </tr>
+
+        <tr th:each="course : ${courseList}" >
+            <td th:text="${course.id}"><input type="checkbox" name="namee"/> 1</td>
+            <td th:text="${course.namee}">Name(English)</td>
+            <td th:text="${course.named}">Name(Danish)</td>
+            <td th:text="${course.studyProgramme}">Study Programme</td>
+            <td th:text="${course.mandElect}">Mandatory/Elective</td>
+            <td th:text="${course.ECTS}">ECTS</td>
+            <td th:text="${course.courseLanguage}">Course Language</td>
+            <td th:text="${course.minStud}">Minimum # of Students</td>
+            <td th:text="${course.expStud}">Expected # of Students</td>
+            <td th:text="${course.maxStud}">Maximum # of Students</td>
+            <td th:text="${course.prerequisite}">Prerequisites</td>
+            <td th:text="${course.learningOutcome}">Learning Outcome</td>
+            <td th:text="${course.content}">Content</td>
+            <td th:text="${course.learningActivity}">Learning Activity</td>
+            <td th:text="${course.examForm}">Exam Form</td>
+            <td th:text="${course.teachers}">Teachers</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/">
+        <button type="button" >Go Back</button>
+    </a>
+    <br/>
+    <br/>
+    <p>Type the Id of the course you wish to apply for</p>
+    <p class="lead">
+    <form action="#" th:action="@{/apply}" th:object="${course}" method="post">
+        <input class="form-control" type="text" id="id" name="id" placeholder="ID" value="" required="true"/> <br/>
+        <button type="submit">Apply</button>
+    </form>
+    </p>
+</p>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js" ></script>
+</body>
+</html>

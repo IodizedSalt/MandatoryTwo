@@ -9,10 +9,6 @@ import java.util.List;
 
 @Entity
 public class Admin {
-
-
-
-
     @Id
     private String email;
     private String name;
