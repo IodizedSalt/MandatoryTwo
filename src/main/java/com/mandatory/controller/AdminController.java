@@ -3,6 +3,7 @@ package com.mandatory.controller;
 import com.mandatory.entity.Course;
 import com.mandatory.repository.AdminRepository;
 import com.mandatory.repository.CourseRepository;
+import com.mandatory.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,8 @@ public class AdminController {
 
     @Autowired
     private CourseRepository cr;
+    @Autowired
+    private StudentRepository sr;
 
 
     @GetMapping(value = "/admin")
@@ -53,16 +56,17 @@ public class AdminController {
         }
 
     }
-//    @GetMapping(value = "/courseedit")
-//    public ModelAndView editUser(
+    @GetMapping(value = "/studentApplications")
+    public ModelAndView manageApps(){
 //            @RequestParam(name = "id", defaultValue = "0")
 //                    long id) {
 //        System.out.println("id = " + id);
-//        ModelAndView mv = new ModelAndView("edit");
-//
-//        mv.getModel().put("course", Course.getCourseById(id));
-//
-//        return mv;
-//    }
+        ModelAndView mv = new ModelAndView("studentApplications");
+
+        mv.getModel().put("appliedCourses", sr.findAll());
+        mv.getModel().put("courseList", cr.findAll());
+
+        return mv;
+    }
 
 }
