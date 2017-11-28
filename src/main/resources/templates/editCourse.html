@@ -43,21 +43,21 @@
     <p class="lead">
     <form action="#" th:action="@{/course/show/edit}" th:object="${course}" method="post">
         <input class="form-control" type="text" id="ID" name="ID" placeholder="id" th:value="${ID}" required="true" contenteditable="false" /> <br/>
-        <input class="form-control" type="text" id="namee" name="namee" placeholder="Name(English)" required="true"/> <br/>
-        <input class="form-control" type="text" id="named" name="named" placeholder="Name(Danish)" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="studyProgramme" name="studyProgramme" placeholder="Study Programme" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="mandElect" name="mandElect" placeholder="Mandatory/Elective" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="ECTS" name="ECTS" placeholder="ECTS" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="courseLanguage" name="courseLanguage" placeholder="Language of Course" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="minStud" name="minStud" placeholder="Minimum # Students" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="expStud" name="expStud" placeholder="Expected # Students" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="maxStud" name="maxStud" placeholder="Maximum # Students" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="prerequisite" name="prerequisite" placeholder="Prerequisites" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="learningOutcome" name="learningOutcome" placeholder="Learning Outcome" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="content" name="content" placeholder="Content" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="learningActivity" name="learningActivity" placeholder="Learning Activity" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="examForm" name="examForm" placeholder="Exam Form" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="teachers" name="teachers" placeholder="Teachers" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="namee" name="namee" placeholder="Name(English)" th:value="${namee}" required="true"/> <br/>
+        <input class="form-control" type="text" id="named" name="named" placeholder="Name(Danish)"  th:value="${named}" required="true"/> <br/>
+        <input class="form-control" type="text" id="studyProgramme" name="studyProgramme" placeholder="Study Programme"  th:value="${studyProgramme}" required="true"/> <br/>
+        <input class="form-control" type="text" id="mandElect" name="mandElect" placeholder="Mandatory/Elective" th:value="${mandElect}" required="true"/> <br/>
+        <input class="form-control" type="text" id="ECTS" name="ECTS" placeholder="ECTS" th:value="${ECTS}" required="true"/> <br/>
+        <input class="form-control" type="text" id="courseLanguage" name="courseLanguage" placeholder="Language of Course" th:value="${courseLanguage}" required="true"/> <br/>
+        <input class="form-control" type="text" id="minStud" name="minStud" placeholder="Minimum # Students" th:value="${minStud}" required="true"/> <br/>
+        <input class="form-control" type="text" id="expStud" name="expStud" placeholder="Expected # Students" th:value="${expStud}" required="true"/> <br/>
+        <input class="form-control" type="text" id="maxStud" name="maxStud" placeholder="Maximum # Students" th:value="${maxStud}" required="true"/> <br/>
+        <input class="form-control" type="text" id="prerequisite" name="prerequisite" placeholder="Prerequisites" th:value="${prerequisite}" required="true"/> <br/>
+        <input class="form-control" type="text" id="learningOutcome" name="learningOutcome" placeholder="Learning Outcome" th:value="${learningOutcome}" required="true"/> <br/>
+        <input class="form-control" type="text" id="content" name="content" placeholder="Content" th:value="${content}" required="true"/> <br/>
+        <input class="form-control" type="text" id="learningActivity" name="learningActivity" placeholder="Learning Activity" th:value="${learningActivity}" required="true"/> <br/>
+        <input class="form-control" type="text" id="examForm" name="examForm" placeholder="Exam Form" th:value="${examForm}" required="true"/> <br/>
+        <input class="form-control" type="text" id="teachers" name="teachers" placeholder="Teachers" th:value="${teachers}" required="true"/> <br/>
         <button type="submit">Save Update</button>
     </form>
     </p>

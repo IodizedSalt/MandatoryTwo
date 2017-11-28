@@ -113,11 +113,30 @@ public class CourseController {
 
 
     @GetMapping(value = "/course/show/edit")
-    public ModelAndView getEdit(@RequestParam(name = "ID", defaultValue = "-1") int id){
+    public ModelAndView getEdit(@RequestParam(name = "ID", defaultValue = "-1") int id)
+    {
+        Course c = cr.findOne(id);
+
         ModelAndView mv = new ModelAndView("editCourse");
         mv.getModel().put("courseList", cr.findAll());
         mv.getModel().put("course", "");
         mv.getModel().put("ID",id);
+        mv.getModel().put("namee",c.getNamee());
+        mv.getModel().put("named",c.getNamee());
+        mv.getModel().put("studyProgramme",c.getNamee());
+        mv.getModel().put("mandElect",c.getMandElect());
+        mv.getModel().put("ECTS",c.getECTS());
+        mv.getModel().put("courseLanguage",c.getCourseLanguage());
+        mv.getModel().put("minStud",c.getMinStud());
+        mv.getModel().put("expStud",c.getExpStud());
+        mv.getModel().put("maxStud",c.getMaxStud());
+        mv.getModel().put("prerequisite",c.getPrerequisite());
+        mv.getModel().put("learningOutcome",c.getLearningOutcome());
+        mv.getModel().put("content",c.getContent());
+        mv.getModel().put("learningActivity",c.getLearningActivity());
+        mv.getModel().put("examForm",c.getExamForm());
+        mv.getModel().put("teachers",c.getTeachers());
+
         return mv;
     }
 
@@ -177,8 +196,6 @@ public class CourseController {
             cr.save(c);
 
         ModelAndView mv = new ModelAndView("homepage");
-//        mv.getModel().put("courseList", cr.findAll());
-//        mv.getModel().put("course", c);
         return mv;
     }
 

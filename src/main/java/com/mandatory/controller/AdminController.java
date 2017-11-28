@@ -37,7 +37,7 @@ public class AdminController {
 
             if (pass.equals(adminPassword)) {
                 System.out.println("ACCESS GRANTED");
-                ModelAndView mv = new ModelAndView("course");
+                ModelAndView mv = new ModelAndView("courses");
                 mv.getModel().put("courseList", cr.findAll());
                 mv.getModel().put("course", "");
                 return mv;
