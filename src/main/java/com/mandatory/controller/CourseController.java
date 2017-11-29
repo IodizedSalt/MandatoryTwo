@@ -79,27 +79,23 @@ public class CourseController {
             @RequestParam(name = "teachers", defaultValue = "NO_TEACHERS")
                     String teachers){
 
-        Course c;
-        System.out.println("in saveandget and id="+id);
+        Course c = Course.getCourseById(id);
         if (id != -1) {
-            System.out.println("inside if and id="+id);
-            Course.getCourseById(id).setNamee(namee);
-            Course.getCourseById(id).setNamed(named);
-            Course.getCourseById(id).setStudyProgramme(studyProgramme);
-            Course.getCourseById(id).setMandElect(mandElect);
-            Course.getCourseById(id).setECTS(ECTS);
-            Course.getCourseById(id).setCourseLanguage(courseLanguage);
-            Course.getCourseById(id).setMinStud(minStud);
-            Course.getCourseById(id).setExpStud(expStud);
-            Course.getCourseById(id).setMaxStud(maxStud);
-            Course.getCourseById(id).setPrerequisite(prerequisite);
-            Course.getCourseById(id).setLearningOutcome(learningOutcome);
-            Course.getCourseById(id).setContent(content);
-            Course.getCourseById(id).setLearningActivity(learningActivity);
-            Course.getCourseById(id).setExamForm(examForm);
-            Course.getCourseById(id).setTeachers(teachers);
-
-            c = Course.getCourseById(id);
+            c.setNamee(namee);
+            c.setNamed(named);
+            c.setStudyProgramme(studyProgramme);
+            c.setMandElect(mandElect);
+            c.setECTS(ECTS);
+            c.setCourseLanguage(courseLanguage);
+            c.setMinStud(minStud);
+            c.setExpStud(expStud);
+            c.setMaxStud(maxStud);
+            c.setPrerequisite(prerequisite);
+            c.setLearningOutcome(learningOutcome);
+            c.setContent(content);
+            c.setLearningActivity(learningActivity);
+            c.setExamForm(examForm);
+            c.setTeachers(teachers);
         } else {
             c = new Course((int)counter.incrementAndGet(), namee, named, studyProgramme, mandElect, ECTS, courseLanguage, minStud, expStud, maxStud, prerequisite, learningOutcome, content, learningActivity, examForm, teachers);
             Course.getCourseList().add(c);
@@ -118,9 +114,9 @@ public class CourseController {
         Course c = cr.findOne(id);
 
         ModelAndView mv = new ModelAndView("editCourse");
-        mv.getModel().put("courseList", cr.findAll());
-        mv.getModel().put("course", "");
         mv.getModel().put("ID",id);
+
+
         mv.getModel().put("namee",c.getNamee());
         mv.getModel().put("named",c.getNamee());
         mv.getModel().put("studyProgramme",c.getNamee());

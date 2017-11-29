@@ -1,6 +1,8 @@
 package com.mandatory.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -43,5 +45,14 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "email=" + email +
+                ", passeword='" + password + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

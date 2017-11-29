@@ -1,5 +1,9 @@
 package com.mandatory.controller;
 
+import com.mandatory.entity.Application;
+import com.mandatory.entity.Course;
+import com.mandatory.entity.Student;
+import com.mandatory.repository.ApplicationRepository;
 import com.mandatory.repository.CourseRepository;
 import com.mandatory.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+
 @RestController
 public class StudentController {
 
@@ -16,6 +24,10 @@ public class StudentController {
     private StudentRepository sr;
     @Autowired
     private CourseRepository cr;
+    @Autowired
+    private ApplicationRepository ar;
+
+    private static AtomicLong counter = new AtomicLong();
 
     @GetMapping(value = "/student")
     public ModelAndView logInStudent(){
@@ -23,7 +35,7 @@ public class StudentController {
         return mv;
     }
 
-    @PostMapping(value = "/student")
+    @GetMapping(value = "/student/apply")
     private ModelAndView logInStudent(@RequestParam(name = "studentemail") String studentEmail,
                                @RequestParam(name = "studentpassword") String studentPassword)
     {
@@ -36,6 +48,7 @@ public class StudentController {
                 ModelAndView mvCourse = new ModelAndView("studentCourse");
                 mvCourse.getModel().put("courseList", cr.findAll());
                 mvCourse.getModel().put("studentCourse", "");
+                mvCourse.getModel().put("sid", studentEmail);
                 return mvCourse;
             } else {
                 System.out.println("ACCESS DENIED _ INVALID PASSWORD");
@@ -49,15 +62,30 @@ public class StudentController {
         }
 
     }
-    @PostMapping(value = "/apply")
-    public ModelAndView apply(
-            @RequestParam(name = "id", defaultValue = "-1") int id){
-        if(id > 0){
-            sr.appliedCourses.add(id);
-        }
-        ModelAndView mv = new ModelAndView("studentCourse");
-        mv.getModel().put("courseList", cr.findAll());
+
+    @GetMapping(value ="student/applicatios")
+    public  ModelAndView apply(
+            @RequestParam(name = "S_id",defaultValue = "-1")String sid){
+        ModelAndView mv = new ModelAndView("studentApplications");
+        mv.getModel().put("applicationList", ar.findAll());
         return mv;
+    }
+
+    @PostMapping(value = "student/apply")
+    public ModelAndView apply(
+            @RequestParam(name = "cid", defaultValue = "-1") int cid,
+            @RequestParam(name = "sid", defaultValue = "no_email") String sid)
+    {
+//        Student s = new Student("2","m","m");
+//        List<Student> students = new ArrayList<>().add(s);
+//                students.add(sr.findStudentByEmail(sid));
+        Application application = new Application((int)counter.incrementAndGet(),cr.findOne(cid),sr.findStudentByEmail(sid));
+        ar.save(application);
+
+//        ModelAndView mv = new ModelAndView("studentApplication");
+//        mv.getModel().put("applicationList", ar.findAll());
+
+        return apply(sid);
     }
 
 

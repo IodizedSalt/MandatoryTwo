@@ -10,6 +10,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 </head>
 <body>
+<table>
 
 <nav class="navbar navbar-inverse	navbar-fixed-top">
     <div class="container-fluid">
@@ -33,17 +34,17 @@
         </div>
     </div>
 </nav>
+</table>
 
 <div class="jumbotron">
     <h1 class="display-3">Course List</h1>
     <p class="lead">
-    <div class="alert alert-dark" role="alert" th:text="${course}">
+    <h5>Welcome :</h5>
+    <div class="alert alert-dark" role="alert" th:text="${sid}">
         This is a dark alert—check it out!
     </div>
-    </p>
-    <hr class="my-4"/>
 
-    <p class="lead">
+    <!--<hr class="my-4"/>-->
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -91,21 +92,27 @@
             <td th:text="${course.teachers}">Teachers</td>
         </tr>
         </tbody>
-    </table>
+</table>
 
-    <a href="/">
-        <button type="button" >Go Back</button>
-    </a>
     <br/>
     <br/>
+
     <p>Type the Id of the course you wish to apply for</p>
     <p class="lead">
-    <form action="#" th:action="@{/apply}" th:object="${course}" method="post">
-        <input class="form-control" type="text" id="id" name="id" placeholder="ID" value="" required="true"/> <br/>
-        <button type="submit">Apply</button>
+    <form action="#" th:action="@{/student/apply}"  method="post">
+        <input class="form-control" type="text" id="cid" name="cid" placeholder="COURSE_ID" value="" required="true"/> <br/>
+        <input class="form-control" type="text" id="sid" name="sid" placeholder="STUDENT_ID" th:value="${sid}" contenteditable="false"/>
+        <button type="submit"  >Apply</button>
+
+    <a href="/">
+    <button type="button" >Go Back</button>
+    </a>
+
     </form>
     </p>
+
 </p>
+
 
 </div>
 

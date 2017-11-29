@@ -30,7 +30,7 @@
         <thead>
         <tr>
             <td>Student Email</td>
-            <td>Student Name</td>
+            <!--<td>Student Name</td>-->
             <td>Course Applied for</td>
             <td>Approve</td>
             <td>Reject</td>
@@ -38,15 +38,13 @@
         </thead>
 
         <tbody>
-        <tr th:if="${appliedCourses.empty}">
+        <tr th:if="${applicationList.empty}">
             <td colspan="3">No Courses</td>
         </tr>
 
-        <tr th:each="student : ${appliedCourses}" >
-        <tr th:each="course : ${courseList}" >
-        <td th:text="${student.email}">Email</td>
-            <td th:text="${student.name}">Name</td>
-            <td th:text="${course.namee}">Course Name</td>
+        <tr th:each="application : ${applicationList}" >
+        <td th:text="${application.student.name}">student</td>
+            <td th:text="${application.course.namee}">course</td>
             <td>
                 <form>
                     <button type="button" name="">Approve</button>
@@ -58,7 +56,7 @@
                 </form>
             </td>
         </tr>
-        </tr>
+
 
         </tbody>
     </table>
