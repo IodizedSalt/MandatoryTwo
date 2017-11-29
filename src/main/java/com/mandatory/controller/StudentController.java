@@ -79,7 +79,7 @@ public class StudentController {
 //        Student s = new Student("2","m","m");
 //        List<Student> students = new ArrayList<>().add(s);
 //                students.add(sr.findStudentByEmail(sid));
-        Application application = new Application((int)counter.incrementAndGet(),cr.findOne(cid),sr.findStudentByEmail(sid));
+        Application application = new Application((int)counter.incrementAndGet(),cr.findOne(cid),sr.findStudentByEmail(sid), null);
         ar.save(application);
 
 //        ModelAndView mv = new ModelAndView("studentApplication");

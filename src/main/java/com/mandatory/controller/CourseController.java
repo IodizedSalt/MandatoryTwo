@@ -118,8 +118,8 @@ public class CourseController {
 
 
         mv.getModel().put("namee",c.getNamee());
-        mv.getModel().put("named",c.getNamee());
-        mv.getModel().put("studyProgramme",c.getNamee());
+        mv.getModel().put("named",c.getNamed());
+        mv.getModel().put("studyProgramme",c.getStudyProgramme());
         mv.getModel().put("mandElect",c.getMandElect());
         mv.getModel().put("ECTS",c.getECTS());
         mv.getModel().put("courseLanguage",c.getCourseLanguage());

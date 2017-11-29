@@ -1,9 +1,12 @@
 package com.mandatory.controller;
 
+import com.mandatory.entity.Application;
 import com.mandatory.entity.Course;
 import com.mandatory.repository.AdminRepository;
+import com.mandatory.repository.ApplicationRepository;
 import com.mandatory.repository.CourseRepository;
 import com.mandatory.repository.StudentRepository;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +24,8 @@ public class AdminController {
     private CourseRepository cr;
     @Autowired
     private StudentRepository sr;
+    @Autowired
+    private ApplicationRepository r;
 
 
     @GetMapping(value = "/admin")
@@ -62,10 +67,49 @@ public class AdminController {
 //                    long id) {
 //        System.out.println("id = " + id);
         ModelAndView mv = new ModelAndView("studentApplications");
+        mv.getModel().put("pending","pending");
 
-        mv.getModel().put("appliedCourses", sr.findAll());
-        mv.getModel().put("courseList", cr.findAll());
+        mv.getModel().put("applicationList", r.findAll());
 
+        return mv;
+    }
+//    @GetMapping(value = "/approve")
+//    public ModelAndView approveApp(){
+//        ModelAndView mv = new ModelAndView("studentApplications");
+//        return mv;
+//    }
+    @PostMapping(value = "/approve")
+    public ModelAndView approveApp(@RequestParam(name = "id", defaultValue = "-1") int id)
+    {
+
+        System.out.println(id);
+        Application a= r.findOne(id);
+        a.setStatus("approved");
+        r.save(a);
+        System.out.println("save to db a great success");
+
+
+        ModelAndView mv = new ModelAndView("studentApplications");
+        mv.getModel().put("pending","pending");
+
+        mv.getModel().put("applicationList", r.findAll());
+        return mv;
+    }
+    @PostMapping(value = "/reject")
+    public ModelAndView rejectApp(@RequestParam(name = "id", defaultValue = "-1") int id)
+    {
+
+        System.out.println(id);
+        Application a= r.findOne(id);
+        a.setStatus("reject");
+        r.save(a);
+        System.out.println("save to db a great success");
+
+
+        ModelAndView mv = new ModelAndView("studentApplications");
+        mv.getModel().put("pending","pending");
+
+        mv.getModel().put("applicationList", r.findAll());
         return mv;
     }
 

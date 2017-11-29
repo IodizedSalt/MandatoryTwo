@@ -12,7 +12,7 @@
 <body>
 
 <nav class="navbar navbar-inverse	navbar-fixed-top">
-            <a class="navbar-brand" href="/">KEA</a>
+    <a class="navbar-brand" href="/">KEA</a>
 </nav>
 
 <div class="jumbotron">
@@ -30,7 +30,7 @@
         <thead>
         <tr>
             <td>Student Email</td>
-            <!--<td>Student Name</td>-->
+            <td>Student Name</td>
             <td>Course Applied for</td>
             <td>Approve</td>
             <td>Reject</td>
@@ -39,20 +39,21 @@
 
         <tbody>
         <tr th:if="${applicationList.empty}">
-            <td colspan="3">No Courses</td>
+            <td colspan="5">No Applications</td>
         </tr>
 
-        <tr th:each="application : ${applicationList}" >
-        <td th:text="${application.student.name}">student</td>
+        <tr th:each="application : ${applicationList}" th:if="${application.status} == ${pending}" >
+            <td th:text="${application.student.email}">email</td>
+            <td th:text="${application.student.name}">student</td>
             <td th:text="${application.course.namee}">course</td>
             <td>
-                <form>
-                    <button type="button" name="">Approve</button>
+                <form action="#" th:action = "@{/approve}" method="post">
+                    <button type="submit" th:value = "${application.id}" name="id" onclick="javascript:getUniqueButtonValue($(this).val()); ">Approve</button>
                 </form>
             </td>
             <td>
-                <form>
-                    <button type="button" name="">Reject</button>
+                <form action="#" th:action = "@{/reject}" method="post">
+                    <button type="submit" th:value = "${application.id}" name="id" onclick="javascript:getUniqueButtonValue($(this).val()); ">Reject</button>
                 </form>
             </td>
         </tr>

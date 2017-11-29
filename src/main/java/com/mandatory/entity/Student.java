@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -13,17 +14,18 @@ public class Student {
     private String name;
     private String password;
 
-    public Student(){
+    public Student() {
 
     }
 
-    public Student(String email, String name, String password){
+    public Student(String email, String name, String password) {
         this.email = email;
         this.name = name;
         this.password = password;
     }
 
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
 
