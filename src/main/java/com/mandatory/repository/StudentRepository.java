@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface StudentRepository extends CrudRepository<Student, String> {
     public Student findStudentByEmail(String studentEmail);
-
-    List<Integer> appliedCourses = new ArrayList<>();
+//
+//  List<Integer> appliedCourses = new ArrayList<>();
 
 }

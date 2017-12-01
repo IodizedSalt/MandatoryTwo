@@ -30,13 +30,13 @@ public class AdminController {
 
     @GetMapping(value = "/admin")
     public ModelAndView logInAdmin(){
-        ModelAndView mv = new ModelAndView("admin");
+        ModelAndView mv = new ModelAndView("adminLogIn");
         return mv;
 
     }
 
-    @PostMapping(value = "/admin")
-    private ModelAndView logInAdmin(@RequestParam(name = "adminemail") String adminEmail,
+    @PostMapping(value = "/admin/loggedIn")
+    private ModelAndView checkLogIn(@RequestParam(name = "adminemail") String adminEmail,
                                @RequestParam(name = "adminpassword") String adminPassword)
     {
         try {
@@ -45,68 +45,57 @@ public class AdminController {
 
             if (pass.equals(adminPassword)) {
                 System.out.println("ACCESS GRANTED");
-                ModelAndView mv = new ModelAndView("courses");
+                ModelAndView mv = new ModelAndView("adminPage");
                 mv.getModel().put("courseList", cr.findAll());
                 mv.getModel().put("course", "");
                 return mv;
             } else {
                 System.out.println("ACCESS DENIED _ INVALID PASSWORD");
-                ModelAndView mv2 = new ModelAndView("admin");
+                ModelAndView mv2 = new ModelAndView("adminLogIn");
                 return mv2;
             }
         }catch (NullPointerException e){
             System.out.println("ACCESS DENIED _ INVALID USERNAME _ ?ALSO PASSWORD?");
-            ModelAndView mv2 = new ModelAndView("admin");
+            ModelAndView mv2 = new ModelAndView("adminLogIn");
             return mv2;
         }
 
     }
-    @GetMapping(value = "/studentApplications")
-    public ModelAndView manageApps(){
-//            @RequestParam(name = "id", defaultValue = "0")
-//                    long id) {
-//        System.out.println("id = " + id);
-        ModelAndView mv = new ModelAndView("studentApplications");
+    @GetMapping(value = "/admin/applications")
+    public ModelAndView ApplicationsPage(){
+        ModelAndView mv = new ModelAndView("adminApplications");
         mv.getModel().put("pending","pending");
-
         mv.getModel().put("applicationList", r.findAll());
 
         return mv;
     }
-//    @GetMapping(value = "/approve")
-//    public ModelAndView approveApp(){
-//        ModelAndView mv = new ModelAndView("studentApplications");
-//        return mv;
-//    }
-    @PostMapping(value = "/approve")
-    public ModelAndView approveApp(@RequestParam(name = "id", defaultValue = "-1") int id)
+
+    @PostMapping(value = "/admin/applications/approve")
+    public ModelAndView approve(@RequestParam(name = "id", defaultValue = "-1") int id)
     {
 
         System.out.println(id);
         Application a= r.findOne(id);
         a.setStatus("approved");
         r.save(a);
-        System.out.println("save to db a great success");
 
-
-        ModelAndView mv = new ModelAndView("studentApplications");
+        ModelAndView mv = new ModelAndView("adminApplications");
         mv.getModel().put("pending","pending");
 
         mv.getModel().put("applicationList", r.findAll());
         return mv;
     }
-    @PostMapping(value = "/reject")
-    public ModelAndView rejectApp(@RequestParam(name = "id", defaultValue = "-1") int id)
+
+    @PostMapping(value = "/admin/applications/reject")
+    public ModelAndView reject(@RequestParam(name = "id", defaultValue = "-1") int id)
     {
 
         System.out.println(id);
         Application a= r.findOne(id);
         a.setStatus("reject");
         r.save(a);
-        System.out.println("save to db a great success");
 
-
-        ModelAndView mv = new ModelAndView("studentApplications");
+        ModelAndView mv = new ModelAndView("adminApplications");
         mv.getModel().put("pending","pending");
 
         mv.getModel().put("applicationList", r.findAll());

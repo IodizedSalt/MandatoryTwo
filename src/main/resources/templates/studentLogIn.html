@@ -41,12 +41,12 @@
     <br/>
     <br/>
     <p class="lead">
-        <form action="#" th:action="@{/student/apply}" th:object="${student}" method="get">
+        <form action="#" th:action="@{/student/loggedIn}" th:object="${student}" method="post">
     <p>
 
     <div class="input-group" >
         <span class="input-group-addon" id="basic-addon3">@</span>
-        <input type="text" class="form-control" id="studentemail" name="studentemail" placeholder="email" required="true" aria-describedby="basic-addon1"/>
+        <input type="text" class="form-control" id="studentemail" name="studentemail" placeholder="email" required="true" aria-describedby="basic-addon1" style="width: 300px" />
     </div>
 
     </p>
@@ -54,7 +54,7 @@
     <p>
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon4">»»</span>
-        <input type="password" class="form-control" id="studentpassword" name="studentpassword" placeholder="password" required="true" aria-describedby="basic-addon1"/>
+        <input type="password" class="form-control" id="studentpassword" name="studentpassword" placeholder="password" required="true" aria-describedby="basic-addon1" style="width: 300px"/>
     </div>
     </p>
 

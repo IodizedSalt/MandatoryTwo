@@ -30,45 +30,42 @@ public class StudentController {
     private static AtomicLong counter = new AtomicLong();
 
     @GetMapping(value = "/student")
-    public ModelAndView logInStudent(){
-        ModelAndView mv = new ModelAndView("student");
+    public ModelAndView logInPage(){
+        ModelAndView mv = new ModelAndView("studentLogIn");
         return mv;
     }
 
-    @GetMapping(value = "/student/apply")
-    private ModelAndView logInStudent(@RequestParam(name = "studentemail") String studentEmail,
-                               @RequestParam(name = "studentpassword") String studentPassword)
+    @GetMapping(value = "/student/loggedIn")
+    private void checkLogIn()
+    {
+    }
+
+    @PostMapping(value = "/student/loggedIn")
+    private ModelAndView checkLogIn(@RequestParam(name = "studentemail") String studentEmail,
+                                    @RequestParam(name = "studentpassword") String studentPassword)
     {
         try {
             String sp = sr.findOne(studentEmail).getPassword();
+            System.out.println(sp.toString());
 
 
             if (sp.equals(studentPassword)) {
                 System.out.println("STUDENT ACCESS GRANTED");
-                ModelAndView mvCourse = new ModelAndView("studentCourse");
+                ModelAndView mvCourse = new ModelAndView("studentPage");
                 mvCourse.getModel().put("courseList", cr.findAll());
-                mvCourse.getModel().put("studentCourse", "");
                 mvCourse.getModel().put("sid", studentEmail);
                 return mvCourse;
             } else {
                 System.out.println("ACCESS DENIED _ INVALID PASSWORD");
-                ModelAndView mvStudent = new ModelAndView("student");
+                ModelAndView mvStudent = new ModelAndView("studentLogIn");
                 return mvStudent;
             }
         }catch (NullPointerException e){
             System.out.println("ACCESS DENIED _ INVALID USERNAME _ ?ALSO PASSWORD?");
-            ModelAndView mvStudent = new ModelAndView("student");
+            ModelAndView mvStudent = new ModelAndView("studentLogIn");
             return mvStudent;
         }
 
-    }
-
-    @GetMapping(value ="student/applicatios")
-    public  ModelAndView apply(
-            @RequestParam(name = "S_id",defaultValue = "-1")String sid){
-        ModelAndView mv = new ModelAndView("studentApplications");
-        mv.getModel().put("applicationList", ar.findAll());
-        return mv;
     }
 
     @PostMapping(value = "student/apply")
@@ -76,16 +73,23 @@ public class StudentController {
             @RequestParam(name = "cid", defaultValue = "-1") int cid,
             @RequestParam(name = "sid", defaultValue = "no_email") String sid)
     {
-//        Student s = new Student("2","m","m");
-//        List<Student> students = new ArrayList<>().add(s);
-//                students.add(sr.findStudentByEmail(sid));
-        Application application = new Application((int)counter.incrementAndGet(),cr.findOne(cid),sr.findStudentByEmail(sid), null);
+        Application application = new Application((int)counter.incrementAndGet(),cr.findOne(cid),sr.findStudentByEmail(sid),"pending");
         ar.save(application);
 
-//        ModelAndView mv = new ModelAndView("studentApplication");
-//        mv.getModel().put("applicationList", ar.findAll());
+        //Reload the page after applying for course
+        ModelAndView mv = new ModelAndView("studentPage");
+        mv.getModel().put("courseList", cr.findAll());
+        mv.getModel().put("sid", sid);
+        return mv;
+    }
 
-        return apply(sid);
+    @GetMapping(value ="student/applications")
+    public  ModelAndView showApplications(
+            @RequestParam( name = "sid",defaultValue = "no_sid")String sid){
+        ModelAndView mv = new ModelAndView("studentApplications");
+        mv.getModel().put("applicationList", ar.findAll());
+        mv.getModel().put("sid",sid);
+        return mv;
     }
 
 

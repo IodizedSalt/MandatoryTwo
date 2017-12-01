@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Course</title>
+    <title>adminPage</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
     <link rel="stylesheet" href="style.css"/>
@@ -10,7 +10,6 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 </head>
 <body>
-<table>
 
 <nav class="navbar navbar-inverse	navbar-fixed-top">
     <div class="container-fluid">
@@ -34,21 +33,12 @@
         </div>
     </div>
 </nav>
-</table>
 
 <div class="jumbotron">
     <h1 class="display-3">Course List</h1>
+    <hr class="my-4"/>
+
     <p class="lead">
-    <h5>Welcome :</h5>
-    <div class="alert alert-dark" role="alert" th:text="${sid}">
-        This is a dark alert—check it out!
-    </div>
-
-    <h5>My courses : </h5>
-    <div class="alert alert-dark" role="alert" th:text="${sid}">
-        This is a dark alert—check it out!
-    </div>
-
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -70,14 +60,12 @@
             <td>Teachers</td>
         </tr>
         </thead>
-
         <tbody>
         <tr th:if="${courseList.empty}">
             <td colspan="3">No Courses</td>
         </tr>
-
         <tr th:each="course : ${courseList}" >
-            <td th:text="${course.id}"> 1</td>
+            <td th:text="${course.id}"> ID </td>
             <td th:text="${course.namee}">Name(English)</td>
             <td th:text="${course.named}">Name(Danish)</td>
             <td th:text="${course.studyProgramme}">Study Programme</td>
@@ -95,28 +83,16 @@
             <td th:text="${course.teachers}">Teachers</td>
         </tr>
         </tbody>
-</table>
-
-    <br/>
-    <br/>
-
-    <p>Type the Id of the course you wish to apply for</p>
-    <p class="lead">
-    <form action="#" th:action="@{/student/apply}"  method="post">
-        <input class="form-control" type="text" id="cid" name="cid" placeholder="COURSE_ID" value="" required="true"/> <br/>
-        <input class="form-control" type="text" id="sid" name="sid" placeholder="STUDENT_ID" th:value="${sid}" contenteditable="false"/>
-        <button type="submit"  >Apply</button>
+    </table>
 
     <a href="/">
-    <button type="button" >Go Back</button>
+        <button type="button" >Go Back</button>
+    </a>
+    <a href="/admin/applications">
+        <button type="button" >Manage</button>
     </a>
 
-    </form>
     </p>
-
-</p>
-
-
 </div>
 
 

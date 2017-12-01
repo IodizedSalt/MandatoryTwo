@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Course</title>
+    <title>adminApplications</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
     <link rel="stylesheet" href="style.css"/>
@@ -16,41 +16,48 @@
 </nav>
 
 <div class="jumbotron">
+    <h1 class="display-3">Course List</h1>
+    <p class="lead">
+    </p>
+    <hr class="my-4"/>
 
     <p class="lead">
 
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
-            <td>Student Name</td>
             <td>Student Email</td>
+            <td>Student Name</td>
             <td>Course Applied for</td>
-            <td>Status</td>
-
+            <td>Approve</td>
+            <td>Reject</td>
         </tr>
         </thead>
 
         <tbody>
         <tr th:if="${applicationList.empty}">
-            <td colspan="3">No Courses</td>
+            <td colspan="5">No Applications</td>
         </tr>
 
-
-        <tr th:each="application : ${applicationList}"  th:if="${application.student.email} == ${sid}">
+        <tr th:each="application : ${applicationList}" th:if="${application.status} == ${pending}" >
+            <td th:text="${application.student.email}">email</td>
             <td th:text="${application.student.name}">student</td>
-            <td th:text="${application.student.email}">student</td>
             <td th:text="${application.course.namee}">course</td>
-            <td th:text="${application.status}">Status</td>
+            <td>
+                <form action="#" th:action = "@{/admin/applications/approve}" method="post">
+                    <button type="submit" th:value = "${application.id}" name="id" onclick="javascript:getUniqueButtonValue($(this).val()); ">Approve</button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action = "@{/admin/applications/reject}" method="post">
+                    <button type="submit" th:value = "${application.id}" name="id" onclick="javascript:getUniqueButtonValue($(this).val()); ">Reject</button>
+                </form>
+            </td>
         </tr>
-
 
 
         </tbody>
     </table>
-    <form>
-        <input type="button" value="Go back!" onclick="history.back()">
-        </input>
-    </form>
 
     </p>
 </div>
