@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Approved Students</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" href="style.css"/>
+
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+        </head>
+<body>
+
+<table>
+
+    <nav class="navbar navbar-inverse	navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">KEA</a>
+            </div>
+        </div>
+    </nav>
+</table>
+
+<div class="jumbotron">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>course</td>
+            <td>student</td>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:if="${applicationsList.empty}">
+            <td colspan="3">No Applications</td>
+        </tr>
+
+        <tr th:each="application : ${applicationsList}" th:if="${application.status} == 'approved' AND ${application.course} == ${course}" >
+            <td th:text="${application.course.namee}"> Course </td>
+            <td th:text="${application.student.name}"> Student </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <form>
+        <input type="button" value="Go back!" onclick="history.back()">
+        </input>
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -14,9 +14,9 @@ public class Application {
 
     @Id
     int id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     Course course;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     Student student;
     private String status;
 

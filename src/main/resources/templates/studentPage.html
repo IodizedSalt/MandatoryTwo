@@ -32,9 +32,6 @@
     <p class="lead">
     <h5  th:text="' Welcome ' + ${sid}"></h5>
     <hr/>
-    <form action="#" th:action="@{/student/applications}"  method="get">
-        <button  name="sid" th:value="${sid}" onclick="javascript:getUniqueButtonValue($(this).val());">View Your Applications</button>
-    </form>
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -97,9 +94,10 @@
         <button  name="sid" th:value="${sid}" onclick="javascript:getUniqueButtonValue($(this).val());">View Your Applications</button>
     </form>
 
-    <a href="/">
-        <button type="button" >Exit</button>
-    </a>
+    <form>
+        <input type="button" value="Go back!" onclick="history.back()">
+        </input>
+    </form>
 
     </p>
 

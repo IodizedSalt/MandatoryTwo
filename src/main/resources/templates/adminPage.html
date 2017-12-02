@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
     <title>adminPage</title>
@@ -85,12 +85,17 @@
         </tbody>
     </table>
 
-    <a href="/">
-        <button type="button" >Go Back</button>
-    </a>
+    <form>
+        <input type="button" value="Go back!" onclick="history.back()">
+        </input>
+    </form>
     <a href="/admin/applications">
         <button type="button" >Manage</button>
     </a>
+    <form action="#" th:action=" @{/appliedStudents}" method="get">
+    <input class="form-control" type="text" id="id" name="id" placeholder="COURSE_ID" value="" required="true"/>
+        <button type="submit">View Students</button>
+    </form>
 
     </p>
 </div>

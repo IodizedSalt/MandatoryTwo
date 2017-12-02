@@ -5,9 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
+
+    private static List<Student> studentList = new ArrayList<>();
 
     @Id
     private String email;
@@ -24,6 +28,13 @@ public class Student {
         this.password = password;
     }
 
+    public static List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public static void setStudentList(List<Student> studentList) {
+        Student.studentList = studentList;
+    }
 
     public String getEmail() {
         return email;

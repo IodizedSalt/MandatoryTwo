@@ -2,6 +2,7 @@ package com.mandatory.controller;
 
 import com.mandatory.entity.Application;
 import com.mandatory.entity.Course;
+import com.mandatory.entity.Student;
 import com.mandatory.repository.AdminRepository;
 import com.mandatory.repository.ApplicationRepository;
 import com.mandatory.repository.CourseRepository;
@@ -34,6 +35,16 @@ public class AdminController {
         return mv;
 
     }
+
+    @GetMapping(value = "/admin/loggedIn")
+    private ModelAndView checkLogIn()
+    {
+                ModelAndView mv = new ModelAndView("adminPage");
+                mv.getModel().put("courseList", cr.findAll());
+                mv.getModel().put("course", "");
+                return mv;
+
+        }
 
     @PostMapping(value = "/admin/loggedIn")
     private ModelAndView checkLogIn(@RequestParam(name = "adminemail") String adminEmail,
@@ -79,6 +90,8 @@ public class AdminController {
         a.setStatus("approved");
         r.save(a);
 
+//        Student.setStudentList();
+
         ModelAndView mv = new ModelAndView("adminApplications");
         mv.getModel().put("pending","pending");
 
@@ -101,5 +114,22 @@ public class AdminController {
         mv.getModel().put("applicationList", r.findAll());
         return mv;
     }
+
+    @GetMapping(value  = "/appliedStudents")
+    public ModelAndView showAcceptedStudents(
+            @RequestParam(name = "id", defaultValue = "-1") int id){
+
+        Course c = cr.findOne(id);
+        ModelAndView mv = new ModelAndView("approvedStudents");
+        mv.getModel().put("applicationsList", r.findAll());
+        mv.getModel().put("studentList", sr.findAll());
+        mv.getModel().put("course", c);
+
+
+        return mv;
+
+    }
+
+
 
 }
